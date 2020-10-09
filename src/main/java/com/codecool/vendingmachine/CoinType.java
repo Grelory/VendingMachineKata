@@ -22,7 +22,7 @@ public enum CoinType {
         switch (name.toUpperCase()) {
             case "QUARTER":
                 return Optional.of(QUARTER);
-            case "DIMES":
+            case "DIME":
                 return Optional.of(DIME);
             case "NICKEL":
                 return Optional.of(NICKEL);
