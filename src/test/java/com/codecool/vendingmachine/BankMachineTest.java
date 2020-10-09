@@ -78,7 +78,7 @@ class BankMachineTest {
     }
 
     @Test
-    public void should_IsNotAbleToMakeAnyChangeReturnTrue_When_DepositIsEmpty()
+    public void should_IsNotAbleToMakeAnyChangeReturnTrue_When_NoNickelsAndDimensInDeposit()
             throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         List<CoinType> initialCoinsList = getInitialCoinsList();
         bankMachine.retrieveCoins(initialCoinsList);
@@ -129,12 +129,9 @@ class BankMachineTest {
     }
 
     @Test
-    public void should_ReturnAppropriateValue_When_CalculatesSumOfCoinsValues()
-            throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public void should_ReturnAppropriateValue_When_CalculatesSumOfCoinsValues() {
         List<CoinType> oneDollar = createOneDollarCoinsList();
-        Method method = bankMachine.getClass().getDeclaredMethod("getSumOfCoins", List.class);
-        method.setAccessible(true);
-        assertEquals(100, method.invoke(bankMachine, oneDollar));
+        assertEquals(100, bankMachine.calculateSumOfCoins(oneDollar));
     }
 
     @Test

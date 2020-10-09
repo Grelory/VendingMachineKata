@@ -18,8 +18,8 @@ public class BankMachine {
     }
 
     public List<CoinType> createChange(List<CoinType> purchasePrice, List<CoinType> insertedCoins) {
-        int inserted = getSumOfCoins(insertedCoins);
-        int price = getSumOfCoins(purchasePrice);
+        int inserted = calculateSumOfCoins(insertedCoins);
+        int price = calculateSumOfCoins(purchasePrice);
         if (price > inserted) throw new IllegalArgumentException();
         int change = inserted - price;
         if (change == 0) return Collections.emptyList();
@@ -48,12 +48,12 @@ public class BankMachine {
     }
 
     public boolean isNotAbleToMakeAnyChange() {
-        return depositIsEmpty();
+        return noNickelsAndDimensInDeposit();
     }
 
     public boolean isAbleToReturnTheChange(List<CoinType> purchasePrice, List<CoinType> insertedCoins) {
-        int price = getSumOfCoins(purchasePrice);
-        int inserted = getSumOfCoins(insertedCoins);
+        int price = calculateSumOfCoins(purchasePrice);
+        int inserted = calculateSumOfCoins(insertedCoins);
         if (price > inserted) throw new IllegalArgumentException();
         int change = inserted - price;
         return createChangeOrReturnEmptyList(change).size() > 0;
@@ -90,13 +90,13 @@ public class BankMachine {
                 break;
             }
         }
-        if (getSumOfCoins(change) == changeValue) return change;
+        if (calculateSumOfCoins(change) == changeValue) return change;
         else return Collections.emptyList();
     }
 
     private void removeChangeCoinsFromDeposit(int numberOfQuarters, int numberOfDimens, int numberOfNickels) {
         if (coinsToRemoveAreNotAvailableInDeposit(numberOfQuarters, numberOfDimens, numberOfNickels)) {
-            throw new IllegalArgumentException();
+            return;
         }
         deposit.put(CoinType.QUARTER, deposit.get(CoinType.QUARTER) - numberOfQuarters);
         deposit.put(CoinType.DIMES, deposit.get(CoinType.DIMES) - numberOfDimens);
@@ -109,13 +109,12 @@ public class BankMachine {
                 nickels > deposit.get(CoinType.NICKEL));
     }
 
-    private boolean depositIsEmpty() {
-        return deposit.get(CoinType.NICKEL) <= 0 ||
-                deposit.get(CoinType.DIMES) <= 0 ||
-                deposit.get(CoinType.QUARTER) <= 0;
+    private boolean noNickelsAndDimensInDeposit() {
+        return deposit.get(CoinType.NICKEL) <= 0 &&
+                deposit.get(CoinType.DIMES) <= 0;
     }
 
-    private int getSumOfCoins(List<CoinType> coins) {
+    public int calculateSumOfCoins(List<CoinType> coins) {
         return coins.stream().map(CoinType::getValue).reduce(0, Integer::sum);
     }
 }
