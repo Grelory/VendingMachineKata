@@ -1,0 +1,16 @@
+#1234
+#+Quarter
+20
+#+Dimes
+20
+#+nickel
+20
+@+Cola
+20
+@+Chips
+20
+@+candy
+20
+1
+2
+4
