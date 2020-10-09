@@ -46,9 +46,9 @@ public class ProductMachine {
             if (deficit >= CoinType.QUARTER.getValue()) {
                 price.add(CoinType.QUARTER);
                 currentValue += CoinType.QUARTER.getValue();
-            } else if (deficit >= CoinType.DIMES.getValue()) {
-                price.add(CoinType.DIMES);
-                currentValue += CoinType.DIMES.getValue();
+            } else if (deficit >= CoinType.DIME.getValue()) {
+                price.add(CoinType.DIME);
+                currentValue += CoinType.DIME.getValue();
             } else if (deficit >= CoinType.NICKEL.getValue()) {
                 price.add(CoinType.NICKEL);
                 currentValue += CoinType.NICKEL.getValue();

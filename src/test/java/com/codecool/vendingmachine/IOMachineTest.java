@@ -26,7 +26,7 @@ class IOMachineTest {
     @Test
     public void should_PrintCustomerMenu_When_DisplayCustomerMenu() {
         String pattern = "@[product_name]  >>> buy product (cola, chips, candy)\n" +
-                "#[coins] >>> insert coin (nickel, dimes, quarter)\n" +
+                "#[coins] >>> insert coin (nickel, dime, quarter)\n" +
                 "%return >>> retrieve inserted coins\n";
         ioMachine.displayCustomerMenu();
         assertEquals(pattern, outContent.toString());
@@ -40,10 +40,10 @@ class IOMachineTest {
                 "3. Quit admin panel\n" +
                 "4. Turn vending machine off\n" +
                 "#+QUARTER >>> Add quarters\n" +
-                "#+DIMES >>> Add dimes\n" +
+                "#+DIME >>> Add dimes\n" +
                 "#+NICKEL >>> Add nickels\n" +
                 "#-QUARTER >>> Retrieve quarters\n" +
-                "#-DIMES >>> Retrieve dimes\n" +
+                "#-DIME >>> Retrieve dimes\n" +
                 "#-NICKEL >>> Retrieve nickels\n" +
                 "@+COLA >>> Add cola\n" +
                 "@+CHIPS >>> Add chips\n" +

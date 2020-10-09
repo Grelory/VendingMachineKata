@@ -5,7 +5,7 @@ import java.util.Optional;
 public enum CoinType {
 
     QUARTER(25),
-    DIMES(10),
+    DIME(10),
     NICKEL(5);
 
     private final int value;
@@ -23,7 +23,7 @@ public enum CoinType {
             case "QUARTER":
                 return Optional.of(QUARTER);
             case "DIMES":
-                return Optional.of(DIMES);
+                return Optional.of(DIME);
             case "NICKEL":
                 return Optional.of(NICKEL);
             default:

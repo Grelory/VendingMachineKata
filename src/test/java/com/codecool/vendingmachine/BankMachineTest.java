@@ -31,7 +31,7 @@ class BankMachineTest {
         Map<CoinType, Integer> deposit = (Map<CoinType, Integer>) depositField.get(bankMachine);
         assertAll(() -> {
             assertEquals(amountOfNickels, deposit.get(CoinType.NICKEL));
-            assertEquals(amountOfDimens, deposit.get(CoinType.DIMES));
+            assertEquals(amountOfDimens, deposit.get(CoinType.DIME));
             assertEquals(amountOfQuarters, deposit.get(CoinType.QUARTER));
         });
     }
@@ -45,10 +45,10 @@ class BankMachineTest {
         List<CoinType> expectedCoin = List.of(CoinType.NICKEL);
         assertEquals(expectedCoin, bankMachine.createChange(price, insertedCoins));
         insertedCoins.add(CoinType.NICKEL);
-        expectedCoin = List.of(CoinType.DIMES);
+        expectedCoin = List.of(CoinType.DIME);
         assertEquals(expectedCoin, bankMachine.createChange(price, insertedCoins));
         insertedCoins.add(CoinType.NICKEL);
-        insertedCoins.add(CoinType.DIMES);
+        insertedCoins.add(CoinType.DIME);
         expectedCoin = List.of(CoinType.QUARTER);
         assertEquals(expectedCoin, bankMachine.createChange(price, insertedCoins));
     }
@@ -59,7 +59,7 @@ class BankMachineTest {
         int numberOfCoinsToRemove = 3;
         for (int i = 0; i < numberOfCoinsToRemove; i++) {
             coinsToRemove.add(CoinType.QUARTER);
-            coinsToRemove.add(CoinType.DIMES);
+            coinsToRemove.add(CoinType.DIME);
             coinsToRemove.add(CoinType.NICKEL);
         }
         bankMachine.retrieveCoins(coinsToRemove);
@@ -71,7 +71,7 @@ class BankMachineTest {
             assertEquals(amountOfQuarters - numberOfCoinsToRemove,
                     deposit.get(CoinType.QUARTER));
             assertEquals(amountOfDimens - numberOfCoinsToRemove,
-                    deposit.get(CoinType.DIMES));
+                    deposit.get(CoinType.DIME));
             assertEquals(amountOfNickels - numberOfCoinsToRemove,
                     deposit.get(CoinType.NICKEL));
         });
@@ -105,7 +105,7 @@ class BankMachineTest {
         int value = 40;
         List<CoinType> expectedChange = new ArrayList<>();
         expectedChange.add(CoinType.QUARTER);
-        expectedChange.add(CoinType.DIMES);
+        expectedChange.add(CoinType.DIME);
         expectedChange.add(CoinType.NICKEL);
         Method method = bankMachine.getClass().getDeclaredMethod("createChangeOrReturnEmptyList", int.class);
         method.setAccessible(true);
@@ -158,7 +158,7 @@ class BankMachineTest {
         List<CoinType> initialCoins = new ArrayList<>();
         for (int i = 0; i < amountOfNickels; i++) {
             initialCoins.add(CoinType.NICKEL);
-            if (i < amountOfDimens) initialCoins.add(CoinType.DIMES);
+            if (i < amountOfDimens) initialCoins.add(CoinType.DIME);
             if (i < amountOfQuarters) initialCoins.add(CoinType.QUARTER);
         }
         return initialCoins;

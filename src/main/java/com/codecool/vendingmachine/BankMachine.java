@@ -9,7 +9,7 @@ public class BankMachine {
     public BankMachine() {
         deposit = new HashMap();
         deposit.put(CoinType.NICKEL, 0);
-        deposit.put(CoinType.DIMES, 0);
+        deposit.put(CoinType.DIME, 0);
         deposit.put(CoinType.QUARTER, 0);
     }
 
@@ -36,7 +36,7 @@ public class BankMachine {
                 case QUARTER:
                     numberOfQuarters++;
                     break;
-                case DIMES:
+                case DIME:
                     numberOfDimens++;
                     break;
                 case NICKEL:
@@ -62,7 +62,7 @@ public class BankMachine {
     public String makeReport() {
         return "Remaining coins:\n" +
                 "\tQuarters: " + deposit.get(CoinType.QUARTER) + "\n" +
-                "\tDimens: " + deposit.get(CoinType.DIMES) + "\n" +
+                "\tDimens: " + deposit.get(CoinType.DIME) + "\n" +
                 "\tNickels: " + deposit.get(CoinType.NICKEL);
     }
 
@@ -70,7 +70,7 @@ public class BankMachine {
         List<CoinType> change = new ArrayList<>();
         int currentValue = 0;
         int amountOfQuarters = deposit.get(CoinType.QUARTER);
-        int amountOfDimens = deposit.get(CoinType.DIMES);
+        int amountOfDimens = deposit.get(CoinType.DIME);
         int amountOfNickels = deposit.get(CoinType.NICKEL);
         while (currentValue < changeValue) {
             int deficit = changeValue - currentValue;
@@ -78,10 +78,10 @@ public class BankMachine {
                 amountOfQuarters--;
                 change.add(CoinType.QUARTER);
                 currentValue += CoinType.QUARTER.getValue();
-            } else if (deficit >= CoinType.DIMES.getValue() && amountOfDimens > 0) {
+            } else if (deficit >= CoinType.DIME.getValue() && amountOfDimens > 0) {
                 amountOfDimens--;
-                change.add(CoinType.DIMES);
-                currentValue += CoinType.DIMES.getValue();
+                change.add(CoinType.DIME);
+                currentValue += CoinType.DIME.getValue();
             } else if (deficit >= CoinType.NICKEL.getValue() && amountOfNickels > 0) {
                 amountOfNickels--;
                 change.add(CoinType.NICKEL);
@@ -99,19 +99,19 @@ public class BankMachine {
             return;
         }
         deposit.put(CoinType.QUARTER, deposit.get(CoinType.QUARTER) - numberOfQuarters);
-        deposit.put(CoinType.DIMES, deposit.get(CoinType.DIMES) - numberOfDimens);
+        deposit.put(CoinType.DIME, deposit.get(CoinType.DIME) - numberOfDimens);
         deposit.put(CoinType.NICKEL, deposit.get(CoinType.NICKEL) - numberOfNickels);
     }
 
     private boolean coinsToRemoveAreNotAvailableInDeposit(int quarters, int dimens, int nickels) {
         return (quarters > deposit.get(CoinType.QUARTER) ||
-                dimens > deposit.get(CoinType.DIMES) ||
+                dimens > deposit.get(CoinType.DIME) ||
                 nickels > deposit.get(CoinType.NICKEL));
     }
 
     private boolean noNickelsAndDimensInDeposit() {
         return deposit.get(CoinType.NICKEL) <= 0 &&
-                deposit.get(CoinType.DIMES) <= 0;
+                deposit.get(CoinType.DIME) <= 0;
     }
 
     public int calculateSumOfCoins(List<CoinType> coins) {

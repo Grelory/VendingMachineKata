@@ -129,13 +129,13 @@ class VendingMachineTest {
         Method insertUserCoin = vendingMachineClass.getDeclaredMethod("insertUserCoin", CoinType.class);
         insertUserCoin.setAccessible(true);
         insertUserCoin.invoke(vendingMachine, CoinType.QUARTER);
-        insertUserCoin.invoke(vendingMachine, CoinType.DIMES);
+        insertUserCoin.invoke(vendingMachine, CoinType.DIME);
         insertUserCoin.invoke(vendingMachine, CoinType.NICKEL);
         outContent.reset();
         Method returnUserCoins = vendingMachineClass.getDeclaredMethod("returnUserCoins");
         returnUserCoins.setAccessible(true);
         returnUserCoins.invoke(vendingMachine);
-        String pattern = "RETURNED COINS QUARTER DIMES NICKEL\n";
+        String pattern = "RETURNED COINS QUARTER DIME NICKEL\n";
         assertEquals(pattern, outContent.toString());
     }
 
@@ -379,7 +379,7 @@ class VendingMachineTest {
         List<CoinType> initialCoins = new ArrayList<>();
         for (int i = 0; i < amountOfNickels; i++) {
             initialCoins.add(CoinType.NICKEL);
-            if (i < amountOfDimens) initialCoins.add(CoinType.DIMES);
+            if (i < amountOfDimens) initialCoins.add(CoinType.DIME);
             if (i < amountOfQuarters) initialCoins.add(CoinType.QUARTER);
         }
         return initialCoins;
