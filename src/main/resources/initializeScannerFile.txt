@@ -1,7 +1,7 @@
 #1234
 #+Quarter
 20
-#+Dimes
+#+Dime
 20
 #+nickel
 20
