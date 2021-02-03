@@ -7,6 +7,7 @@
   <groupId>com.codecool.vendingmachine</groupId>
   <artifactId>VendingMachine</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
 
   <name>VendingMachine</name>
   <!-- FIXME change it to the project's website -->
@@ -56,6 +57,16 @@
         </plugin>
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
+          <configuration>
+            <finalName>VendingMachine</finalName>
+            <archive>
+              <manifest>
+                <mainClass>
+                  com.codecool.vendingmachine.App
+                </mainClass>
+              </manifest>
+            </archive>
+          </configuration>
           <version>3.0.2</version>
         </plugin>
         <plugin>
